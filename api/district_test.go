@@ -29,7 +29,7 @@ func TestGetDistrictAPI(t *testing.T) {
 	server := NewTestServer(t, store)
 	recorder := httptest.NewRecorder()
 
-	url := fmt.Sprintf("/district?%d", district.ID)
+	url := fmt.Sprintf("/district?=%d", district.ID)
 	request, err := http.NewRequest(http.MethodGet, url, nil)
 	require.NoError(t, err)
 
