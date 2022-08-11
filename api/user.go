@@ -70,7 +70,7 @@ func (server *Server) createUser(ctx *gin.Context) {
 }
 
 type getUserRequest struct {
-	id       int64  `form:"id" binding:"required"`
+	ID       int64  `form:"id" binding:"required"`
 	Username string `json:"username" binding:"required"`
 }
 
@@ -81,7 +81,7 @@ func (server *Server) getUser(ctx *gin.Context) {
 		return
 	}
 
-	user, err := server.store.GetUser(ctx, req.id)
+	user, err := server.store.GetUser(ctx, req.ID)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			ctx.JSON(http.StatusNotFound, errorResponse(err))
