@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+	"time"
 
 	"github.com/golang/mock/gomock"
 	mockdb "github.com/irossa/educate/db/mock"
@@ -15,6 +16,7 @@ import (
 
 func TestGetDistrictAPI(t *testing.T) {
 	district := randomDistrict()
+	user, _ := randomUser(t)
 
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
@@ -29,12 +31,14 @@ func TestGetDistrictAPI(t *testing.T) {
 	server := NewTestServer(t, store)
 	recorder := httptest.NewRecorder()
 
-	url := fmt.Sprintf("/district?=%d", district.ID)
+	url := fmt.Sprintf("/district?id=%d", district.ID)
 	request, err := http.NewRequest(http.MethodGet, url, nil)
 	require.NoError(t, err)
 
+	addAuthorization(t, request, server.tokenMaker, authorizationTypeBearer, user.Username, time.Minute)
 	server.router.ServeHTTP(recorder, request)
 	require.Equal(t, http.StatusOK, recorder.Code)
+
 }
 
 func randomDistrict() db.District {

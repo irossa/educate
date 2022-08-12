@@ -38,3 +38,4 @@ func RandomSubject() string {
 	n := len(subjects)
 	return subjects[rand.Intn(n)]
 }
+
