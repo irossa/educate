@@ -18,6 +18,7 @@ jobs:
           POSTGRES_USER:  root
           POSTGRES_PASSWORD:  secret
           POSTGRES_DB:  scholar
+          EXPOSED_POSTGRES_PORT: 5455
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
