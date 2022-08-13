@@ -35,7 +35,7 @@ func (server *Server) createSchool(ctx *gin.Context) {
 }
 
 type getSchoolRequest struct {
-	id int64 `form:"id" binding:"required"`
+	ID int64 `form:"id" binding:"required"`
 }
 
 func (server *Server) getSchool(ctx *gin.Context) {
@@ -45,7 +45,7 @@ func (server *Server) getSchool(ctx *gin.Context) {
 		return
 	}
 
-	school, err := server.store.GetSchool(ctx, req.id)
+	school, err := server.store.GetSchool(ctx, req.ID)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			ctx.JSON(http.StatusNotFound, errorResponse(err))

@@ -40,6 +40,9 @@ func (server *Server) getDistrict(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, errorResponse(err))
 		return
 	}
+	//if req.id <= 0 {
+	//	ctx.JSON(http.StatusNoContent, gin.H{"message": "id less than 0"})
+	//}
 
 	district, err := server.store.GetDistrict(ctx, req.ID)
 	if err != nil {
