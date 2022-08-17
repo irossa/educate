@@ -8,10 +8,10 @@ dropdb:
 	docker exec -it postgres14 dropdb scholar
 
 migrateup:
-	migrate -path db/migration -database "postgresql://root:secret@localhost:5455/scholar?sslmode=disable" -verbose up
+	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/scholar?sslmode=disable" -verbose up
 
 migratedown:
-	migrate -path db/migration -database "postgresql://root:secret@localhost:5455/scholar?sslmode=disable" -verbose down
+	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/scholar?sslmode=disable" -verbose down
 
 sqlc:
 	sqlc generate
