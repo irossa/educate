@@ -4,15 +4,15 @@ on:
   push:
     branches: [ main ]
 
+
 jobs:
-
-  permissions:
-    id-token: write # required to use OIDC authentication
-    contents: read # required to checkout the code from the repo
-
   build:
     name: Build image
     runs-on: ubuntu-latest
+
+    permissions:
+    id-token: write 
+    contents: read 
 
     steps:
     - name: Configure AWS credentials
